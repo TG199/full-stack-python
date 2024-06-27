@@ -3,7 +3,7 @@
 import reflex as rx
 from rxconfig import config
 from .ui.base import base_page
-from . import navigation, pages
+from . import navigation, pages, contact
 
 class State(rx.State):
     """The app state."""
@@ -13,7 +13,6 @@ class State(rx.State):
     def handle_title_input_change(self, val):
         self.label = val
     ...
-
 
 def index() -> rx.Component:
     # Welcome Page (Index)
@@ -42,6 +41,8 @@ app = rx.App()
 app.add_page(index)
 app.add_page(pages.about_page,
              route=navigation.routes.ABOUT_ROUTE)
+app.add_page(contact.contact_page,
+             route=navigation.routes.CONTACT_ROUTE)
 app.add_page(pages.pricing_page,
              route=navigation.routes.PRICING_ROUTE)
 
