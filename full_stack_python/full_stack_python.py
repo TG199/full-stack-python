@@ -8,7 +8,7 @@ from . import blog, contact, navigation, pages
 class State(rx.State):
     """The app state."""
     
-    label: str = "Welcome to Reflex!"
+    label: str = "Goal Ball!"
     
     def handle_title_input_change(self, val):
         self.label = val
@@ -43,6 +43,13 @@ app.add_page(pages.about_page,
              route=navigation.routes.ABOUT_ROUTE)
 app.add_page(contact.contact_page,
              route=navigation.routes.CONTACT_ROUTE)
+
+#blogpage
+app.add_page(blog.blog_post_list_page,
+             route=navigation.routes.BLOG_POSTS_ROUTE,
+             on_load=blog.BlogPostState.load_posts)
+app.add_page(blog.blog_post_list_page,
+             route="/blog/[blog_id]")
 app.add_page(contact.contact_entries_list_page,
              route=navigation.routes.CONTACT_ENTRIES_ROUTE,
              on_load=contact.ContactState.list_entries)
