@@ -18,6 +18,7 @@ def blog_post_detail_link(child: rx.Component, post: model.BlogPostModel):
         child,
         href=post_detail_url
     )
+    
 def blog_post_list_item(post: model.BlogPostModel):
     return rx.box(
         blog_post_detail_link(
@@ -35,12 +36,16 @@ def blog_post_list_page() -> rx.Component:
     
     return base_page(
         rx.vstack(
-            rx.heading("Blog Entries", size="5"),
+            rx.heading("Blog Post", size="5"),
+            rx.link(
+                rx.button("New Post"),
+                href=navigation.routes.BLOG_POST_ADD_ROUTE
+            ),
             #rx.foreach(["abc", "abc", "cde"], foreach_callback),
             rx.foreach(state.BlogPostState.posts, blog_post_list_item),
             spacing="5",
             min_height="85vh",
             align="center",
-        )
+            )
     )
     
